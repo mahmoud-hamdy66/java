@@ -1,4 +1,5 @@
 @Library('iti-sharedlib')_
+import org.iti;
 
 properties([
     disableConcurrentBuilds()
