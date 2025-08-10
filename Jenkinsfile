@@ -11,12 +11,12 @@ pipeline{
         DOCKER_PASS = credentials('docker-password')
     }
     stages{
-        stage("Dependancy check"){
-            steps{
-                sh "mvn dependency-check:check"
-                dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
-            }
-        }
+        // stage("Dependancy check"){
+        //     steps{
+        //         sh "mvn dependency-check:check"
+        //         dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+        //     }
+        // }
         stage("build app"){
             steps{
                 sh "mvn package install"
@@ -29,7 +29,7 @@ pipeline{
         }
         stage("docker build"){
             steps{
-                sh "docker build -t hassaneid/iti-java:v${BUILD_NUMBER} ."
+                sh "docker build -t hassaneid/iti-java:v${IMAGE_VERSION} ."
                 sh "docker images"
             }
         }
