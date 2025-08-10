@@ -40,4 +40,15 @@ pipeline{
         //     }
         // }
     }
+    post {
+        always {
+            sh "ls -al"
+        }
+        success {
+            cleanWs()
+        }
+        failure {
+           echo "Failed"
+        }
+    }
 }
