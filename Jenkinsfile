@@ -22,7 +22,8 @@ node("java"){
 
         def mavenBuild = new org.iti.mvn()
         mavenBuild.javaBuild("package install")
-        hello("Ya 3m alooo rakezo m3ia")
+        def vmIP = hello()
+        echo "${vmIP}"
     }
     stage("archive app"){
         archiveArtifacts artifacts: '**/*.jar', followSymlinks: false
