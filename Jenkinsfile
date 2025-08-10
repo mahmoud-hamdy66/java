@@ -1,7 +1,5 @@
 pipeline{
-    agent {
-        label "java"
-    }
+    agent any
     tools{
         maven 'mvn-3-5-4'
         jdk 'java-11'
@@ -27,12 +25,12 @@ pipeline{
                 archiveArtifacts artifacts: '**/*.jar', followSymlinks: false
             }
         }
-        stage("docker build"){
-            steps{
-                sh "docker build -t hassaneid/iti-java:v${BUILD_NUMBER} ."
-                sh "docker images"
-            }
-        }
+        // stage("docker build"){
+        //     steps{
+        //         sh "docker build -t hassaneid/iti-java:v${BUILD_NUMBER} ."
+        //         sh "docker images"
+        //     }
+        // }
         // stage("docker push"){
         //     steps{
         //         sh "docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
