@@ -45,5 +45,8 @@ pipeline{
         success {
             cleanWs()
         }
+        failure {
+           echo "Failed"
+        }
     }
 }
