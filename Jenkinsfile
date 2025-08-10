@@ -29,7 +29,7 @@ pipeline{
         }
         stage("docker build"){
             steps{
-                sh "docker build -t hassaneid/iti-java:v${IMAGE_VERSION} ."
+                sh "docker build -t hassaneid/iti-java:v${BUILD_NUMBER} ."
                 sh "docker images"
             }
         }
