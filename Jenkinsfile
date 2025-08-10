@@ -19,8 +19,9 @@ node("java"){
         env.PATH = "${javaHome}/bin:${mavenHome}/bin:${env.PATH}"
         sh 'java -version'
         sh 'mvn -version'
-        def mavenBuild = new org.iti.mvn()
-        mavenBuild("package install")
+        // def mavenBuild = new org.iti.mvn()
+        // mavenBuild("package install")
+        hello()
     }
     stage("archive app"){
         archiveArtifacts artifacts: '**/*.jar', followSymlinks: false
