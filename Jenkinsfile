@@ -1,3 +1,5 @@
+@Library('iti-sharedlib')_
+
 properties([
     disableConcurrentBuilds()
 ])
@@ -17,7 +19,8 @@ node("java"){
         env.PATH = "${javaHome}/bin:${mavenHome}/bin:${env.PATH}"
         sh 'java -version'
         sh 'mvn -version'
-        sh "mvn package install"
+        def mavenBuild = new org.iti.mvn()
+        mavenBuild("package install")
     }
     stage("archive app"){
         archiveArtifacts artifacts: '**/*.jar', followSymlinks: false
