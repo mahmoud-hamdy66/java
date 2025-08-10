@@ -19,6 +19,7 @@ node("java"){
         env.PATH = "${javaHome}/bin:${mavenHome}/bin:${env.PATH}"
         sh 'java -version'
         sh 'mvn -version'
+
         def mavenBuild = new org.iti.mvn()
         mavenBuild.javaBuild("package install")
         hello("Ya 3m alooo rakezo m3ia")
@@ -27,7 +28,8 @@ node("java"){
         archiveArtifacts artifacts: '**/*.jar', followSymlinks: false
     }
     stage("docker build"){
-        sh "docker build -t hassaneid/iti-java:v${BUILD_NUMBER} ."
+        def docker = new com.iti.docker()
+        docker.build("ITI-java", "${BUILD_NUMBER}")
         sh "docker images"
     }
 }
