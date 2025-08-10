@@ -1,8 +1,6 @@
 node("java"){
-    tools{
-        maven 'mvn-3-5-4'
-        jdk 'java-11'
-    }
+    tool name: 'java-11', type: 'jdk'
+    tool name: 'mvn-3-5-4', type: 'maven'
     environment{
         DOCKER_USER = credentials('docker-username')
         DOCKER_PASS = credentials('docker-password')
