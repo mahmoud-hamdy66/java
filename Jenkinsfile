@@ -1,3 +1,10 @@
+properties([
+    disableConcurrentBuilds(),
+    parameters([
+        string(defaultValue: '${BUILD_NUMBER}', name: 'XYZ')
+    ])
+])
+
 node("java"){
 
     def javaHome = tool name: 'java-11', type: 'jdk'
@@ -5,9 +12,6 @@ node("java"){
     def DOCKER_USER = credentials('docker-username')
     def DOCKER_PASS = credentials('docker-password')
 
-    parameters {
-        string defaultValue: '${BUILD_NUMBER}', name: 'XYZ'
-    }
     stage("Get code"){
         checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Hassan-Eid-Hassan/java.git']])
     }
