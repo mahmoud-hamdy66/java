@@ -8,6 +8,9 @@ node("java"){
     parameters {
         string defaultValue: '${BUILD_NUMBER}', name: 'XYZ'
     }
+    stage("Get code"){
+        checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Hassan-Eid-Hassan/java.git']])
+    }
     stage("build app"){
         env.JAVA_HOME = javaHome
         env.PATH = "${javaHome}/bin:${mavenHome}/bin:${env.PATH}"
