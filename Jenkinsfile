@@ -29,7 +29,7 @@ node("java"){
     }
     stage("docker build"){
         def docker = new com.iti.docker()
-        docker.build("ITI-java", "${BUILD_NUMBER}")
+        docker.build("iti-java", "${BUILD_NUMBER}")
         sh "docker images"
     }
 }
