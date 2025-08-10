@@ -21,7 +21,7 @@ node("java"){
         sh 'mvn -version'
 
         def mavenBuild = new org.iti.mvn()
-        mavenBuild.javaBuild("package install")
+        // mavenBuild.javaBuild("package install")
         def vmIP = hello()
         echo "${vmIP}"
     }
