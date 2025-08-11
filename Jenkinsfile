@@ -21,9 +21,8 @@ node {
         sh 'mvn -version'
 
         def mavenBuild = new org.iti.mvn()
-        // mavenBuild.javaBuild("package install")
-        def vmIP = hello()
-        echo "${vmIP}"
+        mavenBuild.javaBuild("package install")
+
     }
     stage("archive app"){
         archiveArtifacts artifacts: '**/*.jar', followSymlinks: false
@@ -31,6 +30,10 @@ node {
     stage("docker build"){
         def docker = new com.iti.docker()
         docker.build("iti-java", "${BUILD_NUMBER}")
-        sh "docker images"
+    }
+    stage("push java app image"){
+        def docker = new com.iti.docker()
+        docker.login("${DOCKER_USER}", "${DOCKER_PASS}")
+        docker.push("iti-java", "${BUILD_NUMBER}")
     }
 }
